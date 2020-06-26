@@ -65,15 +65,9 @@ module.exports = {
   async myIdeas(request, response) {
     try {
       const ideas = await connection('ideas')
-        .select('*')
+        .join('users', 'users.id', '=', 'ideas.user_id')
+        .select(['ideas.*', 'users.profile_picture'])
         .where('user_id', request.id);
-
-      const [count] = await connection('ideas')
-        .select('*')
-        .where('user_id', request.id)
-        .count();
-
-      response.header('X-Total-Count', count['count(*)']);
 
       if (!ideas.length) {
         return response.status(404).json({ msg: 'not ideas found' });
@@ -108,7 +102,7 @@ module.exports = {
 
   async delete(request, response) {
     try {
-      const { id } = request.params;
+      const id = request.params.id;
       const user_id = request.id;
 
       const idea = await connection('ideas')
@@ -116,7 +110,7 @@ module.exports = {
         .select('user_id')
         .first();
 
-      if (idea.user_id != user_id) {
+      if (user_id != user_id) {
         return response.status(401).json({ error: 'Operation not permitted.' });
       } else {
         await connection('ideas').where('id', id).delete();
