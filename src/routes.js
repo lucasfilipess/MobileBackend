@@ -46,7 +46,7 @@ routes.get('/ideas/recent', IdeasController.index);
 routes.get('/ideas/old', IdeasController.old);
 routes.get('/ideas/likes', IdeasController.likes);
 routes.get('/ideas/deslikes', IdeasController.deslikes);
-routes.delete('/ideas/delete/:id', IdeasController.delete);
+routes.delete('/ideas/delete/:id', auth, IdeasController.delete);
 
 routes.get('/my-ideas', auth, IdeasController.myIdeas);
 

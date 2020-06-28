@@ -146,6 +146,7 @@ module.exports = {
       return response.status(500).json({ error: 'internal server error' });
     }
   },
+
   async like(request, response) {
     try {
       const { id } = request.params;
