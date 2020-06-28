@@ -1,7 +1,6 @@
 exports.up = function (knex) {
   return knex.schema.createTable('ideas', function (table) {
     table.increments();
-    table.string('user').notNullable();
     table.string('title').notNullable();
     table.string('description').notNullable();
     table.string('references');

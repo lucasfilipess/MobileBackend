@@ -20,4 +20,11 @@ module.exports = {
     type: Joi.string().required(),
     references: Joi.string(),
   }),
+  ideaEdit: Joi.object().keys({
+    id: Joi.number().integer().max(9).required(),
+    title: Joi.string().required(),
+    description: Joi.string().required(),
+    type: Joi.string().required(),
+    references: Joi.string(),
+  }),
 };

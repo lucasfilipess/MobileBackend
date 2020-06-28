@@ -6,7 +6,7 @@ const routes = express.Router();
 const auth = require('./middlewares/auth');
 const authEmail = require('./middlewares/authEmail');
 const authUpdateEmail = require('./middlewares/authUpdateEmail');
-const { login, register, idea } = require('./middlewares/schemas');
+const { login, register, idea, ideaEdit } = require('./middlewares/schemas');
 
 const IdeasController = require('./controllers/IdeasController');
 const UsersController = require('./controllers/UsersController');
@@ -57,6 +57,14 @@ routes.post(
     body: idea,
   }),
   IdeasController.create
+);
+routes.put(
+  '/ideas',
+  auth,
+  celebrate({
+    body: ideaEdit,
+  }),
+  IdeasController.update
 );
 routes.put('/like/:id', auth, IdeasController.like);
 
