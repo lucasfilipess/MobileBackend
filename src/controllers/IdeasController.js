@@ -8,9 +8,9 @@ module.exports = {
         .select(['ideas.*', 'users.profile_picture', 'users.name'])
         .orderBy('id', 'desc');
 
-      if (!ideas.length) {
-        return response.status(404).json({ msg: 'not ideas found' });
-      }
+      // if (!ideas.length) {
+      //   return response.status(404).json({ msg: 'not ideas found' });
+      // }
       return response.json(ideas);
     } catch (error) {
       return response.status(500).json({ error: 'internal server error' });
@@ -23,9 +23,9 @@ module.exports = {
         .join('users', 'users.id', '=', 'ideas.user_id')
         .select(['ideas.*', 'users.profile_picture', 'users.name']);
 
-      if (!ideas.length) {
-        return response.status(404).json({ msg: 'not ideas found' });
-      }
+      // if (!ideas.length) {
+      //   return response.status(404).json({ msg: 'not ideas found' });
+      // }
       return response.json(ideas);
     } catch (error) {
       return response.status(500).json({ error: 'internal server error' });
@@ -38,9 +38,9 @@ module.exports = {
         .select(['ideas.*', 'users.profile_picture', 'users.name'])
         .orderBy('likes');
 
-      if (!ideas.length) {
-        return response.status(404).json({ msg: 'not ideas found' });
-      }
+      // if (!ideas.length) {
+      //   return response.status(404).json({ msg: 'not ideas found' });
+      // }
       return response.json(ideas);
     } catch (error) {
       return response.status(500).json({ error: 'internal server error' });
@@ -53,9 +53,9 @@ module.exports = {
         .select(['ideas.*', 'users.profile_picture', 'users.name'])
         .orderBy('likes', 'desc');
 
-      if (!ideas.length) {
-        return response.status(404).json({ msg: 'not ideas found' });
-      }
+      // if (!ideas.length) {
+      //   return response.status(404).json({ msg: 'not ideas found' });
+      // }
       return response.json(ideas);
     } catch (error) {
       return response.status(500).json({ error: 'internal server error' });
@@ -69,9 +69,9 @@ module.exports = {
         .select(['ideas.*', 'users.profile_picture', 'users.name'])
         .where('user_id', request.id);
 
-      if (!ideas.length) {
-        return response.status(404).json({ msg: 'not ideas found' });
-      }
+      // if (!ideas.length) {
+      //   return response.status(404).json({ msg: 'not ideas found' });
+      // }
 
       return response.json(ideas);
     } catch (error) {
